@@ -339,6 +339,18 @@ hello
 
 ---
 
+- docker container prune은 중지된 모든 컨테이너를 삭제한다.
+
+- docker image prune은 이름 없는 모든 이미지를 삭제한다.
+
+- docker network prune은 사용되지 않는 도커 네트워크를 모두 삭제한다.
+
+- docker volume prune은 도커 컨테이너에서 사용하지 않는 모든 도커 볼륨을 삭제한다.
+
+- docker system prune -a는 중지된 모든 컨테이너, 사용되지 않은 모든 네트워크, 하나 이상의 컨테이너에서 사용되지 않는 모든 이미지를 삭제한다. 따라서 남아있는 컨테이너 또는 이미지는 현재 실행 중인 컨테이너에서 필요하다.
+
+---
+
 ### 하이퍼 바이저
 
 호스트 시스템에서 다수의 게스트 OS를 구동할 수 있게 하는 소프트웨어, 그리고 하드웨어를 가상화하면서 하드웨어와 각각의 가상화 기술(VM)을 모니터링 하는 중간 관리자이다.
@@ -364,6 +376,8 @@ VM을 먼저 띄우고 게스트 OS 부팅 후 어플리케이션 실행
 [Window 10 Home에 Docker Desktop 설치하기](https://blog.sapzil.org/2019/06/09/docker-desktop-for-windows-home/)
 
 [docker for windows 설치 및 문제 해결](https://blog.gaerae.com/2019/04/docker-for-windows-troubleshooting.html)
+
+[Docker 기본 사용법 정리](blog.naver.com/dfnk5516/221974992734)
 
 <!-- ---
 
