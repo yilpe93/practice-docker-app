@@ -69,7 +69,7 @@ RUN npm run build
 # Run Stage : Nginx를 가동하고 첫번째 단계에서 생성된 빌드 폴더의 팔일들을 웹 브라우저의 요청에 따라 제공
 FROM nginx
 
-COPY --from=builder /usr/src/app/build /usr/share/nginx/html
+COPY --from=builder /usr/src/app/Tbuild /usr/share/nginx/html
 ```
 
 > --from=builder : 다른 Stage에 있는 파일을 복사할때 다른 Stage 이름을 명시
@@ -82,4 +82,42 @@ $ docker build
 
 # Docker Image Run : nginx의 기본 포트는 80
 docker run -p 8080:80
+```
+
+---
+
+## Travis CI란?
+
+Travis CI는 Github에서 진행되는 오픈소스 프로젝트를 위한 지속적인 통합(Continuous Integration) 서비스이다. Travis CI를 이용하면 Github repository에 있는 프로젝트를 특정 이벤트에 따라 자동으로 테스트, 빌드하거나 배포할 수 있다. Private repository는 유료로 일정 금액을 지불하고 사용할 수 있다.
+
+> 로컬 Git -> Github -> Travis CI -> AWS
+
+1. 로컬 Git에 있는 소스를 Github 저장소에 Push
+2. Github master 저장소에 소스가 Push가 되면 Travis CI에게 소스가 Push 되었다고 전달
+3. Travis CI는 업데이트 된 소스를 Github에서 가지고 온다.
+4. Github에서 가져온 소스의 테스트 코드를 실행
+5. 테스트 코드 실행 후 테스트가 성공하면 AWS같은 호스팅 사이트로 보내서 배포
+
+### .travis.yml 셋팅
+
+```yml
+# .travis.yml
+
+# 관리자 권한갖기
+sudo: required
+
+# 언어(플랫폼) 선택
+language:
+
+# 도커 환경 구성
+services:
+
+# 스크립트를 실행할 수 있는 환경
+before_install:
+
+# 실행할 스크립트(테스트 실행)
+script:
+
+# 테스트 성공 후 할일
+after_success:
 ```
